@@ -42,3 +42,8 @@ jobs:
         timeout 10 python app.py &
         sleep 5
         curl -f http://localhost:5000/health
+    - name: Ejecutar tests
+      run: |
+    export PYTHONPATH=$PYTHONPATH:$(pwd)
+    pytest tests/ -v
+
