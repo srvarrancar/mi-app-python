@@ -1,5 +1,5 @@
 import pytest, json
-from app import app, multiplicar, es_par
+from mi_app.app import app, multiplicar, es_par
 
 @pytest.fixture
 def client():
