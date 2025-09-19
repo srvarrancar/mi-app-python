@@ -25,11 +25,12 @@ jobs:
 
     - name: Ejecutar tests
       run: |
+        export PYTHONPATH=$PYTHONPATH:$(pwd)
         pytest tests/ -v
 
     - name: Ejecutar con cobertura
       run: |
-        pytest --cov=app --cov-report=term --cov-report=html
+        pytest --cov=mi_app --cov-report=term --cov-report=html
 
     - name: Guardar reporte
       uses: actions/upload-artifact@v4
@@ -39,11 +40,9 @@ jobs:
 
     - name: Verificar app corriendo
       run: |
-        timeout 10 python app.py &
+        export PYTHONPATH=$PYTHONPATH:$(pwd)
+        timeout 10 python mi_app/app.py &
         sleep 5
         curl -f http://localhost:5000/health
-    - name: Ejecutar tests
-      run: |
-        export PYTHONPATH=$PYTHONPATH:$(pwd)
-        pytest tests/ -v
+    
 
