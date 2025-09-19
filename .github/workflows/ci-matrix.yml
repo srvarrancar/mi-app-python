@@ -21,4 +21,6 @@ jobs:
         python-version: ${{ matrix.python-version }}
 
     - run: pip install -r requirements.txt
-    - run: pytest tests/ -v
+    - run: |
+        export PYTHONPATH=$PYTHONPATH:$(pwd)
+        pytest tests/ -v
